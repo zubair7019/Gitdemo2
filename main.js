@@ -1,12 +1,15 @@
 
 var form=document.getElementById('addForm')
 var itemList=document.getElementById('items')
+var filter=document.getElementById('filter')
 
 //form submit event//
 
 form.addEventListener('submit', addItem);
 //delete event//
 itemList.addEventListener('click',removeItem)
+//filter event//
+filter.addEventListener('keyup',filterItem)
 
 
 //addd Item//
@@ -15,13 +18,17 @@ function addItem(e){
 
     //get input value//
     var newItem=document.getElementById('item').value;
+    var newItem2=document.getElementById('item2').value;
 
     //create new li item//
     var li=document.createElement('li')
+    var li=document.createElement('li')
     //add class
+    li.className='list-group-item'
     li.className='list-group-item'
     //add text node with input value//
     li.appendChild(document.createTextNode(newItem))
+    li.appendChild(document.createTextNode(newItem2))
 
   ////create button///
   var deletebtn=document.createElement('button')
@@ -80,3 +87,26 @@ for(let i=0;i<liItem.length;i++)
     editbtton(liItem[i])
 }
 
+
+
+function filterItem(e)
+{
+    //convert lowercase
+    var text=e.target.value.toLowerCase();
+    //get li
+   var items= itemList.getElementsByTagName('li')
+//    console.log(items)
+    //convert yo an array
+
+    Array.from(items).forEach(function(item){
+        var itemName=item.firstChild.textContent;
+        if(itemName.toLocaleLowerCase().indexOf(text) != -1)
+        {
+            item.style.display='block';
+        }
+        else{
+            item.style.display='none';
+        }
+    })
+    
+}
