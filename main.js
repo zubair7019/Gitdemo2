@@ -29,7 +29,7 @@ function addItem(e){
 
 
    var editbtton=document.createElement('button')
-   editbtton.className='btn btn-danger btn-sm float-right delete'
+   editbtton.className='btn btn-danger btn-sm float-right'
    
 
    
@@ -42,7 +42,7 @@ function addItem(e){
   //append button to li//
   li.appendChild(deletebtn)
 
-  li.append(editbtton)
+  li.appendChild(editbtton)
 
   //append li to list
    
@@ -60,9 +60,23 @@ function removeItem(e){
     }
 }
 
+ function editbtton(li)
+ {
 
+ var editbtn=document.createElement('button')
+ editbtn.className='btn btn-danger btn-sm float-right'
+ editbtn.appendChild(document.createTextNode('Edit'))
+ editbtn.style.background='coral'
+li.appendChild(editbtn)
+}
+  
+//  console.log(document.getElementsByClassName('list-group-item'))
 
+let liItem=document.getElementsByClassName('list-group-item')
 
-
-
+for(let i=0;i<liItem.length;i++)
+{
+    console.log(liItem[i])
+    editbtton(liItem[i])
+}
 
